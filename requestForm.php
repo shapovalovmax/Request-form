@@ -154,7 +154,7 @@ if (class_exists('requestForm') == false) {
             global $wpdb;
 
             $charset_collate = $wpdb->get_charset_collate();
-            $sql = "CREATE TABLE IF NOT EXISTS $this->table_name (
+            $sql = "CREATE TABLE IF NOT EXISTS '$this->table_name' (
                 id mediumint(9) NOT NULL AUTO_INCREMENT,
                 name tinytext NOT NULL COLLATE utf8_general_ci,
                 email varchar(50),
