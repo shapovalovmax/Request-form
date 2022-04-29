@@ -13,9 +13,7 @@ defined('ABSPATH') or die('Really?');
 
 if (class_exists('requestForm') == false) {
 
-    add_action('plugins_loaded', array('requestForm', 'init'));
 
-    register_activation_hook(__FILE__, array('requestForm', 'request_form_db'));
 
     class requestForm
     {
@@ -26,7 +24,7 @@ if (class_exists('requestForm') == false) {
 
         public $table_result;
 
-        public function init()
+        public static function init()
         {
             is_null(self::$instance) AND self::$instance = new self;
             return self::$instance;
@@ -34,6 +32,9 @@ if (class_exists('requestForm') == false) {
 
         public function __construct()
         {
+            register_activation_hook(__FILE__, array('requestForm', 'request_form_db'));
+            add_action('plugins_loaded', array('requestForm', 'init'));
+
             global $wpdb;
 
             $this->table_name = $wpdb->prefix . 'request_form';
