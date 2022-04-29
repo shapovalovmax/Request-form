@@ -15,7 +15,6 @@ if (class_exists('requestForm') == false) {
 
     add_action('plugins_loaded', array('requestForm', 'init'));
 
-    register_activation_hook(__FILE__, array('requestForm', 'request_form_db'));
 
     class requestForm
     {
@@ -50,6 +49,9 @@ if (class_exists('requestForm') == false) {
 
             add_action('admin_enqueue_scripts', array($this, 'plugin_styles'));
             add_action('admin_menu', array($this, 'requestForm_register_admin_page'));
+
+            register_activation_hook(__FILE__, array('requestForm', 'request_form_db'));
+
         }
 
         public function wp_enqueue_scripts()
@@ -154,7 +156,7 @@ if (class_exists('requestForm') == false) {
             global $wpdb;
 
             $charset_collate = $wpdb->get_charset_collate();
-            $sql = "CREATE TABLE IF NOT EXISTS `self::$table_name` (
+            $sql = "CREATE TABLE IF NOT EXISTS $this->table_name (
                 id mediumint(9) NOT NULL AUTO_INCREMENT,
                 name tinytext NOT NULL COLLATE utf8_general_ci,
                 email varchar(50),
