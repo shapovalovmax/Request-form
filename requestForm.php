@@ -13,7 +13,9 @@ defined('ABSPATH') or die('Really?');
 
 if (class_exists('requestForm') == false) {
 
+    add_action('plugins_loaded', array('requestForm', 'init'));
 
+    register_activation_hook(__FILE__, array('requestForm', 'request_form_db'));
 
     class requestForm
     {
@@ -32,7 +34,7 @@ if (class_exists('requestForm') == false) {
 
         public function __construct()
         {
-            global $wpdb;
+            global $wpdb, $this;
 
             $this->table_name = $wpdb->prefix . 'request_form';
             $this->table_result = $wpdb->get_results("SELECT * FROM  $this->table_name");
@@ -48,10 +50,6 @@ if (class_exists('requestForm') == false) {
 
             add_action('admin_enqueue_scripts', array($this, 'plugin_styles'));
             add_action('admin_menu', array($this, 'requestForm_register_admin_page'));
-
-            add_action('plugins_loaded', array('requestForm', 'init'));
-            register_activation_hook(__FILE__, array('requestForm', 'request_form_db'));
-
         }
 
         public function wp_enqueue_scripts()
