@@ -13,6 +13,10 @@ defined('ABSPATH') or die('Really?');
 
 if (class_exists('requestForm') == false) {
 
+    add_action('plugins_loaded', array('requestForm', 'init'));
+
+    register_activation_hook(__FILE__, array('requestForm', 'request_form_db'));
+
     class requestForm
     {
 
@@ -150,7 +154,7 @@ if (class_exists('requestForm') == false) {
             global $wpdb;
 
             $charset_collate = $wpdb->get_charset_collate();
-            $sql = "CREATE TABLE IF NOT EXISTS $this->table_name (
+            $sql = "CREATE TABLE IF NOT EXISTS self::table_name (
                 id mediumint(9) NOT NULL AUTO_INCREMENT,
                 name tinytext NOT NULL COLLATE utf8_general_ci,
                 email varchar(50),
@@ -167,12 +171,7 @@ if (class_exists('requestForm') == false) {
 
         }
 
+
     }
-
-    add_action('plugins_loaded', array('requestForm', 'init'));
-
-    register_activation_hook(__FILE__, array('requestForm', 'request_form_db'));
-
-
 
 }
