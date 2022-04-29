@@ -26,7 +26,7 @@ if (class_exists('requestForm') == false) {
 
         public $table_result;
 
-        public static function init()
+        public function init()
         {
             is_null(self::$instance) AND self::$instance = new self;
             return self::$instance;
@@ -34,7 +34,7 @@ if (class_exists('requestForm') == false) {
 
         public function __construct()
         {
-            global $wpdb, $this;
+            global $wpdb;
 
             $this->table_name = $wpdb->prefix . 'request_form';
             $this->table_result = $wpdb->get_results("SELECT * FROM  $this->table_name");
