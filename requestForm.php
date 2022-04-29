@@ -26,15 +26,15 @@ if (class_exists('requestForm') == false) {
 
         public static function init()
         {
+            register_activation_hook(__FILE__, array('requestForm', 'request_form_db'));
             is_null(self::$instance) AND self::$instance = new self;
             return self::$instance;
         }
 
         public function __construct()
         {
-            register_activation_hook(__FILE__, array('requestForm', 'request_form_db'));
-            add_action('plugins_loaded', array('requestForm', 'init'));
 
+            add_action('plugins_loaded', array('requestForm', 'init'));
             global $wpdb;
 
             $this->table_name = $wpdb->prefix . 'request_form';
