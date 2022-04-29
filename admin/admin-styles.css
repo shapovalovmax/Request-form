@@ -1,0 +1,55 @@
+.admin-table-request {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-top: 0.5em;
+}
+
+.admin-table-request thead th {
+    background-color: #79b8ff;
+}
+
+.admin-table-request th,
+.admin-table-request td {
+    padding: 10px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#removeTable button {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    outline: none;
+    border: 1px solid #808080;
+    padding: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    width: fit-content;
+    width: -moz-fit-content;
+    transition: all .1s ease-in-out;
+}
+
+#removeTable button:hover {
+    border-color: #ff0000;
+    background-color: #ff0000;
+    color: #ffffff;
+}
+
+.tablePagination a {
+    outline: none;
+    color: #79b8ff;
+    text-decoration: unset;
+    transition: all .3s ease;
+    box-shadow: unset;
+}
+
+.tablePagination {
+    color: #000000;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: default;
+}
+
+.tablePagination a:hover {
+    text-decoration: underline;
+    color: #2d90ff;
+}

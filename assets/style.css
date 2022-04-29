@@ -1,0 +1,21 @@
+form#requestForm input {
+    border: 1px solid gray;
+    width: 250px;
+    margin-bottom: 20px;
+    padding: 8px;
+    outline: none;
+}
+
+.btn-request-submit {
+    outline: none;
+    border: 1px solid #808080;
+    padding: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+.btn-request-submit:hover {
+    border-color: #3e3d3d;
+    background-color: #3e3d3d;
+    color: #ffffff;
+}
