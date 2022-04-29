@@ -13,10 +13,6 @@ defined('ABSPATH') or die('Really?');
 
 if (class_exists('requestForm') == false) {
 
-    add_action('plugins_loaded', array('requestForm', 'init'));
-
-    register_activation_hook(__FILE__, array('requestForm', 'request_form_db'));
-
     class requestForm
     {
 
@@ -26,6 +22,11 @@ if (class_exists('requestForm') == false) {
 
         public $table_result;
 
+        public static function init()
+        {
+            is_null(self::$instance) AND self::$instance = new self;
+            return self::$instance;
+        }
 
         public function __construct()
         {
@@ -166,11 +167,12 @@ if (class_exists('requestForm') == false) {
 
         }
 
-        public static function init()
-        {
-            is_null(self::$instance) AND self::$instance = new self;
-            return self::$instance;
-        }
     }
+
+    add_action('plugins_loaded', array('requestForm', 'init'));
+
+    register_activation_hook(__FILE__, array('requestForm', 'request_form_db'));
+
+
 
 }
