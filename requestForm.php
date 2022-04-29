@@ -13,7 +13,6 @@ defined('ABSPATH') or die('Really?');
 
 if (class_exists('requestForm') == false) {
 
-    add_action('plugins_loaded', array('requestForm', 'init'));
 
 
     class requestForm
@@ -50,6 +49,7 @@ if (class_exists('requestForm') == false) {
             add_action('admin_enqueue_scripts', array($this, 'plugin_styles'));
             add_action('admin_menu', array($this, 'requestForm_register_admin_page'));
 
+            add_action('plugins_loaded', array('requestForm', 'init'));
             register_activation_hook(__FILE__, array('requestForm', 'request_form_db'));
 
         }
